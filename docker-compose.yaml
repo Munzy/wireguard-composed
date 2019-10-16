@@ -1,0 +1,31 @@
+version: "2"
+services:
+
+  dns:
+    image: mvance/unbound:latest
+    networks:
+      net:
+        ipv4_address: 192.168.19.2
+    restart: always
+    
+  vpn:
+    image: cmulk/wireguard-docker:buster
+    volumes:
+     - ./data/wg/:/etc/wireguard/:rw
+    networks:
+      net:
+        ipv4_address: 192.168.19.3
+    ports:
+     - 5555:5555/udp
+    restart: always
+    cap_add:
+     - NET_ADMIN
+     - SYS_MODULE
+
+networks:
+  net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.19.0/24
