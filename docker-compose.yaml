@@ -6,6 +6,7 @@ services:
     networks:
       net:
         ipv4_address: 192.168.19.2
+        ipv6_address: fd19:19:19::2
     restart: always
     
   vpn:
@@ -15,6 +16,7 @@ services:
     networks:
       net:
         ipv4_address: 192.168.19.3
+        ipv6_address: fd19:19:19::3
     ports:
      - 1194:1194/udp
     restart: always
@@ -25,7 +27,9 @@ services:
 networks:
   net:
     driver: bridge
+    enable_ipv6: true
     ipam:
       driver: default
       config:
         - subnet: 192.168.19.0/24
+        - subnet: fd19:19:19::0/64
