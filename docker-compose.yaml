@@ -16,7 +16,7 @@ services:
       net:
         ipv4_address: 192.168.19.3
     ports:
-     - 5555:5555/udp
+     - 1194:1194/udp
     restart: always
     cap_add:
      - NET_ADMIN
