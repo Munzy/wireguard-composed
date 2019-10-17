@@ -1,4 +1,4 @@
-version: "2"
+version: "2.1"
 services:
 
   dns:
@@ -23,6 +23,18 @@ services:
     cap_add:
      - NET_ADMIN
      - SYS_MODULE
+
+  
+  ipv6nat-mailcow:
+    environment:
+      - TZ="America/Los Angeles"
+    image: robbertkl/ipv6nat
+    restart: always
+    privileged: true
+    network_mode: "host"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /lib/modules:/lib/modules:ro
 
 networks:
   net:
