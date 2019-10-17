@@ -25,7 +25,7 @@ services:
      - SYS_MODULE
 
   
-  ipv6nat-mailcow:
+  ipv6nat:
     environment:
       - TZ="America/Los Angeles"
     image: robbertkl/ipv6nat
